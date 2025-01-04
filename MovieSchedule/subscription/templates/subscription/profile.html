@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Movie Schedule - Profile</title>
+    </head>
+    <body>
+        <h1>Welcome, {{ name }}</h1>
+
+        <h2>Zip Codes:</h2>
+        {% for code in zip_codes %}
+            {% if code.active == 1 %}
+                <input type="checkbox" checked>{{ code.zip }}
+            {% else %}
+                <input type="checkbox">{{ code.zip }}
+            {% endif %}
+
+            <br>
+            
+        {% endfor %}
+
+        <h2>Account Settings:</h2>
+        <p>unsubscribe</p>
+        <p>delete account</p>
+    </body>
+</html>

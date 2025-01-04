@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+test_profile = {'name': 'Zack', 'zip_codes': [{'zip': '06468', 'active': 1}, {'zip': '10001', 'active': 0}]}
+
 def home(request):
-    return HttpResponse('<h1>Home</h1>')
+    return render(request, 'subscription/home.html')
 
 def login(request):
-    return HttpResponse('<h1>Login</h1>')
+    return render(request, 'subscription/login.html')
 
-def user_settings(request):
-    return HttpResponse('<h1>Settings</h1>')
+def profile(request):
+    return render(request, 'subscription/profile.html', context=test_profile)
