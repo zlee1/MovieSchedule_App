@@ -1,3 +1,18 @@
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
 
-# Create your models here.
+class Theater(models.Model):
+    id = models.CharField(max_length=100, primary_key=True)
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Subscription(models.Model):
+    theater = models.ForeignKey(Theater, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_subscribed = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f'{self.user.name}: {self.theater.name}'
