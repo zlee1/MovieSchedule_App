@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Movie Schedule - Home</title>
-    </head>
-    <body>
-        <h1>Home</h1>
-        <a href="/login">Login</a>
-        <br>
-        <a href="/profile">Profile</a>
-    </body>
-</html>
+{% extends 'subscriptions/base.html' %}
+{% block content %}
+    <a href="/login">Login</a>
+    <br>
+    <a href="/profile">Profile</a>
+{% endblock content %}
