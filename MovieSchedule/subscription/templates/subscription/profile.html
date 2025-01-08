@@ -10,13 +10,13 @@
             <h1>Welcome, {{ user.username }}</h1>
         {% endif %}
 
-        <h2>Subscribed theaters:</h2>
+        <h2>Subscriptions:</h2>
         {% for sub in subscriptions %}
-            <p>{{ sub.theater.name }} <a href="">delete</a></p>
+            <p>{{ sub.theater.name }} <a href="">Unsubscribe</a></p>
         {% endfor %}
 
-        <h2>Account Settings:</h2>
-        <a href="">unsubscribe all</a>
-        <a href="">delete account</a>
+        <a href="">Unsubscribe all</a>
+        <br>
+        <a href="/">Home</a>
     </body>
 </html>
