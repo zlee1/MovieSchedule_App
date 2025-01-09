@@ -1,4 +1,5 @@
 {% extends 'subscriptions/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     {% if user.first_name != '' %}
         <h1>Welcome, {{ user.first_name }}</h1>
@@ -8,10 +9,19 @@
 
     <h2>Subscriptions:</h2>
     {% for sub in subscriptions %}
-        <p>{{ sub.theater.name }} <a href="">Unsubscribe</a></p>
+        <p><a class="btn btn-outline-info">X</a> {{ sub.theater.name }}</p>
     {% endfor %}
 
-    <a href="">Unsubscribe all</a>
-    <br>
+    <a class="btn btn-outline-info">Unsubscribe All</a>
+    <div class="container mt-4 mb-4">
+        <form method="POST">
+            <legend>Search for Theaters</legend>
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            </fieldset>
+            <button class="btn btn-outline-info" type="submit">Search</button>
+        </form>
+    </div>
     <a href="{% url 'subscriptions-home' %}">Home</a>
 {% endblock content %}

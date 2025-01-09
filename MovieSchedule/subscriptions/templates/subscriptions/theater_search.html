@@ -1,0 +1,8 @@
+{% extends 'subscriptions/base.html' %}
+{% block content %}
+    <p>Search result for theaters near {{ zip_code }}</p>
+    {% for theater in theaters %}
+        <p><a href="{{ theater.url }}">{{ theater.name }}</a></p>
+    {% endfor %}
+    <a href="{% url 'subscriptions-manage' %}" class="btn btn-outline-info">Back</a>
+{% endblock content %}
