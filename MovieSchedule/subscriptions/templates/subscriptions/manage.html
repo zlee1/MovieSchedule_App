@@ -1,0 +1,17 @@
+{% extends 'subscriptions/base.html' %}
+{% block content %}
+    {% if user.first_name != '' %}
+        <h1>Welcome, {{ user.first_name }}</h1>
+    {% else %}
+        <h1>Welcome, {{ user.username }}</h1>
+    {% endif %}
+
+    <h2>Subscriptions:</h2>
+    {% for sub in subscriptions %}
+        <p>{{ sub.theater.name }} <a href="">Unsubscribe</a></p>
+    {% endfor %}
+
+    <a href="">Unsubscribe all</a>
+    <br>
+    <a href="{% url 'subscriptions-home' %}">Home</a>
+{% endblock content %}

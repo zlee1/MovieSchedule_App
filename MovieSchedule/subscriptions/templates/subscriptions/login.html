@@ -2,7 +2,7 @@
 {% block content%}
     <p>Email:</p>
     <p>Password:</p>
-    <a href="/profile/">Login</a>
+    <a href="{% url 'subscriptions-manage' %}">Login</a>
     <br>
-    <a href="/">Home</a>
+    <a href="{% url 'subscriptions-home' %}">Home</a>
 {% endblock content %}
