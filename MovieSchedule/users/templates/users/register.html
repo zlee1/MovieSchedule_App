@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Movie Schedule - Register</title>
-    </head>
-    <body>
-        <form method="POST">
-            {% csrf_token %}
-            <legend>Register</legend>
-            <fieldset>
-                {{ form.as_p }}
-            </fieldset>
-            <button type="submit">Register</button>
+{% extends 'subscriptions/base.html' %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <legend>Register</legend>
+        <fieldset>
+            {{ form.as_p }}
+        </fieldset>
+        <button type="submit">Register</button>
 
-        </form>
-        <small>Already have an account? <a href="/login">Login</a></small>
-    </body>
-</html>
+    </form>
+    <small>Already have an account? <a href="/login/">Login</a></small>
+{% endblock content %}
