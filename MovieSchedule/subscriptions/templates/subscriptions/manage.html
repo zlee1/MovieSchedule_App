@@ -8,14 +8,18 @@
     {% endif %}
 
 
-    <h2>Subscriptions</h2>
+    <h2 class="mt-4">Subscriptions</h2>
     <div class="container mt-4 mb-4">
-        <ul class="list-group">
-            {% for sub in subscriptions %}
-                <li class="list-group-item"><a href="{{ sub.theater.url }}">{{ sub.theater.name }}</a><a href="" class="float-right">Unsubscribe</a></li>
-            {% endfor %}
-        </ul>
-        <a class="btn btn-outline-info mt-2">Unsubscribe From All Theaters</a>
+        {% if user.subscription_set %}
+            <ul class="list-group">
+                {% for sub in user.subscription_set.all %}
+                    <li class="list-group-item"><a href="{{ sub.theater.url }}" class="text-muted">{{ sub.theater.name }}</a><a href="" class="float-right">Unsubscribe</a></li>
+                {% endfor %}
+            </ul>
+            <a class="btn btn-outline-info mt-2">Unsubscribe From All Theaters</a>
+        {% else %}
+            <p>You are not subscribed to any theaters. Search for theaters below and then subscribe to begin receiving schedule emails.</p>
+        {% endif %}
     </div>
 
     <h2>Search for Theaters</h2>
@@ -28,4 +32,5 @@
             <button class="btn btn-outline-info" type="submit">Search</button>
         </form>
     </div>
+    
 {% endblock content %}

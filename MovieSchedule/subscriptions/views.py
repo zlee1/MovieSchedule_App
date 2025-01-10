@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
 import urllib
 from bs4 import BeautifulSoup
 from .forms import TheaterSearchForm
@@ -11,6 +13,7 @@ def home(request):
 def login(request):
     return render(request, 'subscriptions/login.html', context={'title': 'Login'})
 
+@login_required
 def manage(request):
     current_user = User.objects.first()
 
@@ -23,9 +26,9 @@ def manage(request):
     else:
         form = TheaterSearchForm()
     
-    return render(request, 'subscriptions/manage.html', context={'title': 'Manage', 'form': form, 'user': current_user, 'subscriptions':current_user.subscription_set.all()})
+    return render(request, 'subscriptions/manage.html', context={'title': 'Manage', 'form': form, 'subscriptions':current_user.subscription_set.all()})
 
-def theater_search(request, zip_code='10001'):
+def theater_search(request, zip_code):
 
     theater_list = []
 

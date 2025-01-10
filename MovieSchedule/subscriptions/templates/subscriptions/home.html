@@ -1,6 +1,8 @@
 {% extends 'subscriptions/base.html' %}
 {% block content %}
-    <a href="{% url 'subscriptions-login' %}">Login</a>
-    <br>
-    <a href="{% url 'subscriptions-manage' %}">Manage Subscription</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'subscriptions-manage' %}" class="btn btn-outline-info">Manage Subscription</a>
+    {% else %}
+        <p>Login required to manage subscriptions.</p>
+    {% endif %}
 {% endblock content %}
