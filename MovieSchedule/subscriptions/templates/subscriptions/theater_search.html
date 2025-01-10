@@ -1,8 +1,15 @@
 {% extends 'subscriptions/base.html' %}
 {% block content %}
     <p>Search result for theaters near {{ zip_code }}</p>
-    {% for theater in theaters %}
-        <p><a href="{{ theater.url }}">{{ theater.name }}</a></p>
-    {% endfor %}
+    {% if theaters %}
+        <ul class="list-group mb-4">
+            {% for theater in theaters %}
+                <li class="list-group-item"><a href="{{ theater.url }}">{{ theater.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No theaters found.</p>
+    {% endif %}
+    
     <a href="{% url 'subscriptions-manage' %}" class="btn btn-outline-info">Back</a>
 {% endblock content %}

@@ -7,21 +7,25 @@
         <h1>Welcome, {{ user.username }}</h1>
     {% endif %}
 
-    <h2>Subscriptions:</h2>
-    {% for sub in subscriptions %}
-        <p><a class="btn btn-outline-info">X</a> {{ sub.theater.name }}</p>
-    {% endfor %}
 
-    <a class="btn btn-outline-info">Unsubscribe All</a>
+    <h2>Subscriptions</h2>
+    <div class="container mt-4 mb-4">
+        <ul class="list-group">
+            {% for sub in subscriptions %}
+                <li class="list-group-item"><a href="{{ sub.theater.url }}">{{ sub.theater.name }}</a><a href="" class="float-right">Unsubscribe</a></li>
+            {% endfor %}
+        </ul>
+        <a class="btn btn-outline-info mt-2">Unsubscribe From All Theaters</a>
+    </div>
+
+    <h2>Search for Theaters</h2>
     <div class="container mt-4 mb-4">
         <form method="POST">
-            <legend>Search for Theaters</legend>
             {% csrf_token %}
-            <fieldset class="form-group">
+            <fieldset class="form-group mb-0">
                 {{ form|crispy }}
             </fieldset>
             <button class="btn btn-outline-info" type="submit">Search</button>
         </form>
     </div>
-    <a href="{% url 'subscriptions-home' %}">Home</a>
 {% endblock content %}
