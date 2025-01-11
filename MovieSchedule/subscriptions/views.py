@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 import urllib
 from bs4 import BeautifulSoup
@@ -49,7 +50,10 @@ def theater_search(request, zip_code):
 
         if(theater_dict not in theater_list):
             theater_list.append(theater_dict)
-
+     
     context = {'title': 'Search', 'zip_code': zip_code, 'theaters': theater_list}
+
+    if(request.method == 'POST'):
+        messages.success(request, [id for id in request.POST.items()])
 
     return render(request, 'subscriptions/theater_search.html', context=context)
