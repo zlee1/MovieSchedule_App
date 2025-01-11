@@ -8,21 +8,25 @@
     {% endif %}
 
 
-    <h2 class="mt-4">Subscriptions</h2>
+    
     <div class="container mt-4 mb-4">
-        {% if user.subscription_set %}
+        <h2 class="mt-4">Subscriptions</h2>
+        {% if user.subscription_set.all %}
             <ul class="list-group">
                 {% for sub in user.subscription_set.all %}
                     <li class="list-group-item"><a href="{{ sub.theater.url }}" class="text-dark">{{ sub.theater.name }}</a><a href="" class="float-right">Unsubscribe</a></li>
                 {% endfor %}
             </ul>
-            <a class="btn btn-outline-info mt-2">Unsubscribe From All Theaters</a>
+            <a class="btn btn-outline-info mt-2" href="{% url 'subscriptions-search' zip_code='00000' %}">Subscribe to Theaters</a>
+            <a class="btn btn-outline-info mt-2 float-right" href="">Unsubscribe From All Theaters</a>
         {% else %}
             <p>You are not subscribed to any theaters. Search for theaters below and then subscribe to begin receiving schedule emails.</p>
+            <a class="btn btn-outline-info mt-2" href="{% url 'subscriptions-search' zip_code='00000' %}">Subscribe to Theaters</a>
         {% endif %}
     </div>
 
-    <h2>Search for Theaters</h2>
+
+    <!-- <h2>Search for Theaters</h2>
     <div class="container mt-4 mb-4">
         <form method="POST">
             {% csrf_token %}
@@ -31,6 +35,6 @@
             </fieldset>
             <button class="btn btn-outline-info" type="submit">Search</button>
         </form>
-    </div>
+    </div> -->
     
 {% endblock content %}

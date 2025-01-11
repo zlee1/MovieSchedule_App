@@ -16,4 +16,4 @@ class Subscription(models.Model):
     date_subscribed = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f'{self.user.first_name} - {self.theater.name}'
+        return f'{self.user.username} - {self.theater.name}'
