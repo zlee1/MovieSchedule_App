@@ -94,3 +94,18 @@ def theater_search(request, zip_code='00000'):
     context = {'title': 'Search', 'form': form, 'zip_code': zip_code, 'theaters': theater_list}
 
     return render(request, 'subscriptions/theater_search.html', context=context)
+
+def unsubscribe(request, theater_id='all'):
+    if(theater_id != 'all'):
+        request.user.subscription_set.all().get(theater=Theater.objects.filter(id=theater_id)).delete()
+
+
+    if(request.method == 'POST'):
+        if(theater_id == 'all'):
+            for subscription in request.user.subscription_set.all():
+                subscription.delete()
+        messages.success(request, 'Unsubscribed')
+        return redirect('subscriptions-manage')
+
+    context = {'title': 'Unsubscribe', 'theater_id': theater_id}
+    return render(request, 'subscriptions/unsubscribe.html', context=context)

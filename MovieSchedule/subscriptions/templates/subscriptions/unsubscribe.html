@@ -1,0 +1,18 @@
+{% extends 'subscriptions/base.html' %}
+{% block content %}
+    
+    {% if theater_id == 'all' %}
+        <h1>Unsubscribe</h1>
+        <div class="container">
+            <p>Are you sure you want to unsubscribe from all theaters?</p>
+            <form method="POST">
+                {% csrf_token %}
+                
+                <button class="btn btn-outline-info" type="submit">Unsubscribe</button>
+                <a class="btn btn-outline-info" href="{% url 'subscriptions-manage' %}">Cancel</a>
+            </form>
+            
+            
+        </div>
+    {% endif %}
+{% endblock content %}

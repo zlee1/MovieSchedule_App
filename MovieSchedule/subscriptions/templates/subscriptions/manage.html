@@ -7,8 +7,6 @@
         <h1>Welcome, {{ user.username }}</h1>
     {% endif %}
 
-
-    
     <div class="container mt-4 mb-4">
         <h2 class="mt-4">Subscriptions</h2>
         {% if user.subscription_set.all %}
@@ -18,7 +16,8 @@
                 {% endfor %}
             </ul>
             <a class="btn btn-outline-info mt-2" href="{% url 'subscriptions-search' zip_code='00000' %}">Subscribe to Theaters</a>
-            <a class="btn btn-outline-info mt-2 float-right" href="">Unsubscribe From All Theaters</a>
+
+            <a class="btn btn-outline-info mt-2 float-right" href="{% url 'subscriptions-unsubscribe' theater_id='all' %}">Unsubscribe From All Theaters</a>
         {% else %}
             <p>You are not subscribed to any theaters. Search for theaters below and then subscribe to begin receiving schedule emails.</p>
             <a class="btn btn-outline-info mt-2" href="{% url 'subscriptions-search' zip_code='00000' %}">Subscribe to Theaters</a>
