@@ -28,7 +28,7 @@ def manage(request):
     else:
         form = TheaterSearchForm()
     
-    return render(request, 'subscriptions/manage.html', context={'title': 'Manage', 'form': form, 'subscriptions':current_user.subscription_set.all()}) # add order by?
+    return render(request, 'subscriptions/manage.html', context={'title': 'Manage', 'form': form, 'subscriptions':current_user.subscription_set.order_by('theater')})
 
 def theater_search(request, zip_code='00000'):
 

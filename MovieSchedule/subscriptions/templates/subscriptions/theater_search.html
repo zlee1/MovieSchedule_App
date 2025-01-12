@@ -27,7 +27,7 @@
                             {% for theater in theaters %}
                                 <input class="form-check-input" type="checkbox" id="{{ theater.id }}" name="{{ theater.id }}" value="{{ theater.id }}">
                                 <label class="form-check-label" for="{{ theater.id }}">
-                                    <a href="{{ theater.url }}" class="text-dark">{{ theater.name }}</a>
+                                    <a href="{{ theater.url }}" class="text-dark" target="_blank">{{ theater.name }}</a>
                                 </label>
                                 <br>
                             {% endfor %}

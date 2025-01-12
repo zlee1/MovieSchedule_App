@@ -9,10 +9,10 @@
 
     <div class="content-section mt-4 mb-4">
         <h2>Subscriptions</h2>
-        {% if user.subscription_set.all %}
+        {% if subscriptions %}
             <ul class="list-group">
-                {% for sub in user.subscription_set.all %}
-                    <li class="list-group-item"><a href="{{ sub.theater.url }}" class="text-dark">{{ sub.theater.name }}</a><a href="{% url 'subscriptions-unsubscribe' theater_id=sub.theater.id %}" class="float-right text-danger">Unsubscribe</a></li>
+                {% for sub in subscriptions %}
+                    <li class="list-group-item"><a href="{{ sub.theater.url }}" class="text-dark" target="_blank">{{ sub.theater.name }}</a><a href="{% url 'subscriptions-unsubscribe' theater_id=sub.theater.id %}" class="float-right text-danger">Unsubscribe</a></li>
                 {% endfor %}
             </ul>
             <a class="btn btn-outline-info mt-2" href="{% url 'subscriptions-search' zip_code='00000' %}">Add Theaters</a>
