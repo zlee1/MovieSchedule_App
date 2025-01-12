@@ -2,22 +2,22 @@
 {% load crispy_forms_tags %}
 {% block content %}
     {% if user.first_name != '' %}
-        <h1>Welcome, {{ user.first_name }}</h1>
+        <h1>Welcome, {{ user.first_name }}!</h1>
     {% else %}
-        <h1>Welcome, {{ user.username }}</h1>
+        <h1>Welcome, {{ user.username }}!</h1>
     {% endif %}
 
-    <div class="container mt-4 mb-4">
-        <h2 class="mt-4">Subscriptions</h2>
+    <div class="content-section mt-4 mb-4">
+        <h2>Subscriptions</h2>
         {% if user.subscription_set.all %}
             <ul class="list-group">
                 {% for sub in user.subscription_set.all %}
-                    <li class="list-group-item"><a href="{{ sub.theater.url }}" class="text-dark">{{ sub.theater.name }}</a><a href="" class="float-right">Unsubscribe</a></li>
+                    <li class="list-group-item"><a href="{{ sub.theater.url }}" class="text-dark">{{ sub.theater.name }}</a><a href="{% url 'subscriptions-unsubscribe' theater_id=sub.theater.id %}" class="float-right text-danger">Unsubscribe</a></li>
                 {% endfor %}
             </ul>
-            <a class="btn btn-outline-info mt-2" href="{% url 'subscriptions-search' zip_code='00000' %}">Subscribe to Theaters</a>
+            <a class="btn btn-outline-info mt-2" href="{% url 'subscriptions-search' zip_code='00000' %}">Add Theaters</a>
 
-            <a class="btn btn-outline-info mt-2 float-right" href="{% url 'subscriptions-unsubscribe' theater_id='all' %}">Unsubscribe From All Theaters</a>
+            <a class="btn btn-outline-danger mt-2 float-right" href="{% url 'subscriptions-unsubscribe' theater_id='all' %}">Unsubscribe From All Theaters</a>
         {% else %}
             <p>You are not subscribed to any theaters. Search for theaters below and then subscribe to begin receiving schedule emails.</p>
             <a class="btn btn-outline-info mt-2" href="{% url 'subscriptions-search' zip_code='00000' %}">Subscribe to Theaters</a>

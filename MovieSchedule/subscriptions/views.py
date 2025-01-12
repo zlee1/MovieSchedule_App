@@ -28,7 +28,7 @@ def manage(request):
     else:
         form = TheaterSearchForm()
     
-    return render(request, 'subscriptions/manage.html', context={'title': 'Manage', 'form': form, 'subscriptions':current_user.subscription_set.all()})
+    return render(request, 'subscriptions/manage.html', context={'title': 'Manage', 'form': form, 'subscriptions':current_user.subscription_set.all()}) # add order by?
 
 def theater_search(request, zip_code='00000'):
 
@@ -97,14 +97,17 @@ def theater_search(request, zip_code='00000'):
 
 def unsubscribe(request, theater_id='all'):
     if(theater_id != 'all'):
-        request.user.subscription_set.all().get(theater=Theater.objects.filter(id=theater_id)).delete()
+        theater = Theater.objects.filter(id=theater_id).first()
+        request.user.subscription_set.get(theater=theater).delete()
+        messages.success(request, f'Unsubscribed from {theater.name}')
+        return redirect('subscriptions-manage')
 
 
     if(request.method == 'POST'):
         if(theater_id == 'all'):
             for subscription in request.user.subscription_set.all():
                 subscription.delete()
-        messages.success(request, 'Unsubscribed')
+        messages.success(request, 'Unsubscribed from all theaters')
         return redirect('subscriptions-manage')
 
     context = {'title': 'Unsubscribe', 'theater_id': theater_id}
