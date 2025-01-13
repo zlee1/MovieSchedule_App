@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-import urllib
+import urllib.request
 from bs4 import BeautifulSoup
 from .forms import TheaterSearchForm
 from .models import Theater, Subscription
