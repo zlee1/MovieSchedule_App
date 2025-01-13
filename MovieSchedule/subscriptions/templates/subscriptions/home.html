@@ -1,8 +1,10 @@
 {% extends 'subscriptions/base.html' %}
 {% block content %}
     {% if user.is_authenticated %}
-        <a href="{% url 'subscriptions-manage' %}" class="btn btn-outline-info">Manage Subscription</a>
+        <a href="{% url 'subscriptions-manage' %}" class="btn btn-outline-info">Manage Subscriptions</a>
     {% else %}
-        <p>Login required to manage subscriptions.</p>
+        <p>You must be logged in to manage theater subscriptions.</p>
+        <a href="{% url 'login' %}" class="btn btn-outline-info">Login</a>
+        <a href="{% url 'register' %}" class="btn btn-outline-info">Register</a>
     {% endif %}
 {% endblock content %}
