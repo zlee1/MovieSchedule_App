@@ -30,6 +30,7 @@ def manage(request):
     
     return render(request, 'subscriptions/manage.html', context={'title': 'Manage', 'form': form, 'subscriptions':current_user.subscription_set.order_by('theater')})
 
+@login_required
 def theater_search(request, zip_code='00000'):
 
     theater_list = []
@@ -95,6 +96,7 @@ def theater_search(request, zip_code='00000'):
 
     return render(request, 'subscriptions/theater_search.html', context=context)
 
+@login_required
 def unsubscribe(request, theater_id='all'):
     if(theater_id != 'all'):
         theater = Theater.objects.filter(id=theater_id).first()
