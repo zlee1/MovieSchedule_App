@@ -1,9 +1,14 @@
 {% extends 'subscriptions/base.html' %}
 {% block content %}
+    <h1>Movie Theater Schedule Newsletter</h1>
+    <p>
+        This is a customizable newsletter that allows you to subscribe to movie theaters in your area and receive an emailed weekly schedule of everything playing at those theaters. Emails are sent on Thursdays.
+    </p>
     {% if user.is_authenticated %}
+        <p>Go to Manage Subscriptions to find theaters near you.</p>
         <a href="{% url 'subscriptions-manage' %}" class="btn btn-outline-info">Manage Subscriptions</a>
     {% else %}
-        <p>You must be logged in to manage theater subscriptions.</p>
+        <p>Login or create an account to get started.</p>
         <a href="{% url 'login' %}" class="btn btn-outline-info">Login</a>
         <a href="{% url 'register' %}" class="btn btn-outline-info">Register</a>
     {% endif %}
