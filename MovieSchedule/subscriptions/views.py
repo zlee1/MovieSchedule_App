@@ -12,6 +12,9 @@ from .models import Theater, Subscription
 def home(request):
     return render(request, 'subscriptions/home.html')
 
+def about(request):
+    return render(request, 'subscriptions/about.html')
+
 def login(request):
     return render(request, 'subscriptions/login.html', context={'title': 'Login'})
 
